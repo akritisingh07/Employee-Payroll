@@ -1,0 +1,71 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+{% include 'sidebar.html' %}
+{% load static %}
+
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+              <li class="breadcrumb-item active">Employee list</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="card m-5">
+        <div class="card-header bg-info">
+            <h3 class="card-title text-light" >Employee list</h3>
+        </div>
+<div class="card-body">
+    <table id="table" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Employee Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for i in emp_data %}
+           <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.mobile}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.addr}}</td> 
+                  {% if i.emp_img == " " %}
+                  <td>No Image</td>
+                  {% else %}
+                  <td><a href="{{i.emp_img.url}}">View Img</a></td>  
+                  {% endif %}           
+                <td>
+                  <button class="btn btn-sm btn-outline-primary view_employee" data-id="" type="button"><i class="fa fa-eye"></i></button>
+                  <a href="{% url 'emp_list_update' i.id %}"><button class="btn btn-sm btn-outline-primary edit_employee" data-id="" type="button"><i class="fa fa-edit"></i></button>
+                  <a href="{% url 'emp_list_dlt' i.id %}"><button class="btn btn-sm btn-outline-danger remove_employee" data-id="" type="button"><i class="fa fa-trash"></i></button>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+          
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+
+{% include 'footer.html' %}
+{% include 'footer_link.html' %}

@@ -1,0 +1,108 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+{% include 'sidebar.html' %}
+{% load static %}
+
+<style>
+	form#manage-department {
+    margin-top: 20px;
+}
+</style>
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+              <li class="breadcrumb-item active">Add Department</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <div class="card m-5">
+        <div class="card-header bg-info">
+            <h3 class="card-title text-light" >Add Department</h3>
+        </div>
+	
+
+<div class="container-fluid">     
+   <div class="col-lg-12">
+		<div class="row">
+			<!-- FORM Panel -->
+			<div class="col-md-4">
+			<form method="POST">
+				{% csrf_token %}
+				<div class="card">
+					<div class="card-header">
+						  Department Form
+				  	</div>
+					<div class="card-body">
+							<input type="hidden" name="id">
+							<div class="form-group">
+								<label class="control-label">Name</label>
+								<textarea name="name" id="" cols="30" rows="2" class="form-control"></textarea>
+							</div>
+					</div>
+							
+					<div class="card-footer">
+						<div class="row">
+							<div class="col-md-12">
+								<button class="btn btn-sm btn-primary col-sm-3 offset-md-3"> Save</button>
+								<button class="btn btn-sm btn-default col-sm-3" type="button"> Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			</div>
+        
+			<!-- FORM Panel -->
+
+			<!-- Table Panel -->
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+                                    <th>Id</th>
+									<th class="text-center">Department</th>
+									<th class="text-center">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for i in depart_data %}
+								<tr>
+                                    <td>{{i.id}}</td>
+                                    <td>{{i.name}}</td>
+									<td class="text-center">
+										<button class="btn btn-sm btn-primary edit_department" type="button" data-id="" data-name="">Edit</button>
+										<a href="{% url 'department_list_del' i.id %}"><button class="btn btn-sm btn-danger delete_department" type="button" data-id="">Delete</button>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+            </div>
+			</div>
+			<!-- Table Panel -->
+		</div>
+	</div>	
+
+</div>
+</div>
+</div>
+
+{% include 'footer.html' %}
+{% include 'footer_link.html' %}

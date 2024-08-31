@@ -1,0 +1,77 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+{% include 'sidebar.html' %}
+{% load static %}
+
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+              <li class="breadcrumb-item active">Add Employee</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <div class="card m-5">
+        <div class="card-header bg-info">
+            <h3 class="card-title text-light" >Add Employee</h3>
+        </div>
+        
+          <div class="card-body">
+           <form method="POST"enctype="multipart/form-data">
+            {% csrf_token %}
+             <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="name">Emp Name</label>
+                <input type="text" id="name" class="form-control" name="emp_name" placeholder="enter employee name...">          
+              </div>
+              <div class="form-group col-md-3">
+                <label for="name">Mobile</label>
+                <input type="number" id="numb" class="form-control" name="numb" placeholder="Mobile...">          
+              </div>
+              <div class="form-group col-md-3">
+                <label for="name">Email</label>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Email...">          
+              </div>
+              <div class="form-group col-md-3">
+                <label for="name">Address</label>
+                <textarea class="form-control" id="addr" name="addr"></textarea>         
+              </div>
+            </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="img">Employee Image</label>
+                  <input type="file" id="img" class="form-control" name="img">
+                </div>
+              </div>
+
+
+              <button class="btn btn-success">Save</button>
+             </div>  
+            </div>   
+            
+        </div>
+      </form> 
+     
+    </div>
+
+
+
+    
+</div>    
+
+
+{% include 'footer.html' %}
+{% include 'footer_link.html' %}

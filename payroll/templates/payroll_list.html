@@ -1,0 +1,68 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+{% include 'sidebar.html'  %}
+{% load static %} 
+
+  <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v1</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+     <div class="card m-5">
+      <div class="card-header bg-info">
+        <h3 class="card-title">Payroll List</h3>
+      </div>
+      <div class="card-body">
+        
+          <table id="example1" class="table table-border"> 
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Ref-No</th>
+                <th>Date-From</th>
+                <th>Date-To</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in payr_data %}
+              <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.refno}}</td>
+                <td>{{i.datefrom}}</td>
+                <td>{{i.dateto}}</td>
+                <td>
+                    
+                  <button class="btn btn-sm btn-outline-primary view_employee" data-id="" type="button"><i class="fa fa-eye"></i></button>
+                  <a href="{% url 'payroll_list_updt' i.id %}"><button class="btn btn-sm btn-outline-primary edit_employee" data-id="" type="button"><i class="fa fa-edit"></i></button>
+                  <a href="{% url 'payroll_list_dlt' i.id %}"><button class="btn btn-sm btn-outline-danger remove_employee" data-id="" type="button"><i class="fa fa-trash"></i></button>
+                    
+                </td>
+              </tr>
+               {% endfor %}
+            </tbody>
+          </table>
+      </div>
+     </div>
+
+
+</div>
+
+
+{% include 'footer.html'  %} 
+{% include 'footer_link.html' %}
